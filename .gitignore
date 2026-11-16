@@ -1,0 +1,18 @@
+# Sphinx
+docs/_build/
+
+# Python
+__pycache__/
+*.pyc
+
+# Editors / OS
+.vscode/*
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+
+# MicroPico stubs
+.micropico
+
+# Secrets (never commit Wi-Fi credentials)
+secrets.py
