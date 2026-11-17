@@ -9,7 +9,7 @@
 # Overview
 Our project is an FM radio receiver with digital tuning realized on a Raspberry Pi Pico 2 W. The user selects a frequency with a rotary encoder and confirms it by touching a touch sensor. The frequency and radio parameters are shown on a display and the audio is played on headphones connected directly to the tuner module. RGB LED indicates whether a station is received (green) or not (red). A long touch saves the current station as a preset. The headphone cable also serves as the FM antenna.
 
-The software is comprised of a main application ([main.py](src/main.py)), a configuration file ([config.py](src/config.py)) and a reusable class for every hardware component in [drivers](src/drivers): [Si4703](src/drivers/si4703.py), [Display](src/drivers/display.py), [RotaryEncoder](src/drivers/rotary_encoder.py), [TouchButton](src/drivers/touch_button.py) and [RgbLed](src/drivers/rgb_led.py).
+The software is comprised of a main application ([main.py](src/main.py)), a configuration file ([config.py](src/config.py)) and a reusable class for every hardware component in [drivers](src/drivers): [Si4703](src/drivers/si4703.py), [Display](src/drivers/display.py), [RotaryEncoder](src/drivers/rotary_encoder.py), [TouchButton](src/drivers/touch_sensor.py) and [RgbLed](src/drivers/rgb_led.py).
 
 # Component list
 
@@ -30,7 +30,7 @@ flowchart LR
     ENC[Rotary encoder<br/>GP10, GP11, SW GP3]
     TOUCH[Touch sensor<br/>GP2]
 
-    subgraph PICO[Raspberry Pi Pico 2 W - MicroPython / uasyncio]
+    subgraph PICO[Raspberry Pi Pico 2 W]
         IN[input_task<br/>20 ms]
         TUN[tuner_task<br/>on confirm]
         ST[status_task<br/>500 ms]
@@ -86,7 +86,6 @@ flowchart LR
 |---|---|
 | `3V3(OUT)` | Si4703 `3V3` and `SEN`, display `VCC`, encoder `+`, touch sensor `VCC` |
 | `GND` | all module grounds, RGB LED common cathode |
-| `VBUS` | USB 5 V, not used by the modules |
 
 # Wiring Diagram
 
@@ -102,7 +101,7 @@ We are using `uasyncio` tasks so that input handling, tuning and display updates
 | `input_task` | `uasyncio` task | 20 ms | reads encoder detents and changes the selected frequency; reads the touch sensor (short = confirm, long = save preset) |
 | `tuner_task` | `uasyncio` task | on confirm | sends the confirmed frequency to the tuner |
 | `status_task` | `uasyncio` task | 500 ms | reads RSSI and stereo status, sets the RGB LED |
-| `display_task` | `uasyncio` task | on change, max. 5 Hz | redraws the display (selected frequency blinks until confirmed) |
+| `display_task` | `uasyncio` task | on change, max. 5 Hz | redraws the display |
 
 # Repository Structure
 
