@@ -63,18 +63,16 @@ flowchart LR
 
 | Bus | Pins | Speed | Devices |
 |---|---|---|---|
-| `I2C0` | SDA `GP4`, SCL `GP5` | 400 kHz | Si4703 FM tuner (`0x10`), display (`0x3C`) |
+| `I2C0` | SDA `D/4`, SCL `C/5` | 400 kHz | Si4703 FM tuner (`0x10`), display (`0x3C`) |
 
 ## Pins
 
 | Pico 2 W pin | Direction | Signal | Component | Note |
 |---|---|---|---|---|
 | `GP2` | input | `I/O` | HW-763 touch sensor | active HIGH; short touch = confirm, long touch = save preset |
-| `GP3` | input | `SW` | rotary encoder | internal pull-up, active LOW; reserved |
-| `GP4` | I/O | `SDA` / `SDIO` | I2C0: Si4703, display | held LOW during tuner reset |
-| `GP5` | output | `SCL` / `SCLK` / `SCK` | I2C0: Si4703, display | |
-| `GP10` | input | `CLK` | rotary encoder | internal pull-up, IRQ on both edges |
-| `GP11` | input | `DT` | rotary encoder | internal pull-up, IRQ on both edges |
+| `GP21` | input | `SW` | rotary encoder | internal pull-up, active LOW; reserved |
+| `GP19` | input | `CLK` | rotary encoder | internal pull-up, IRQ on both edges |
+| `GP20` | input | `DT` | rotary encoder | internal pull-up, IRQ on both edges |
 | `GP12` | output (PWM) | `R` | RGB LED | through R1 220 Ω; no station |
 | `GP13` | output (PWM) | `G` | RGB LED | through R2 220 Ω; station received |
 | `GP14` | output (PWM) | `B` | RGB LED | through R3 220 Ω; reserved |
