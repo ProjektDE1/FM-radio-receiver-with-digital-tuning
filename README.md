@@ -2,9 +2,9 @@
 
 # Team Members:
 
-- Pažítka Samuel
-- Pupík Milan
-- Řihák Petr
+- Pažítka Samuel - Rotary Encoder, Touch Sensor, Git Maintenance
+- Pupík Milan - I2C Communication, Display Driver
+- Řihák Petr - FM Tuner, RGB LED Diode
 
 # Overview
 Our project is an FM radio receiver with digital tuning realized on a Raspberry Pi Pico 2 W. The user selects a frequency with a rotary encoder and confirms it by touching a touch sensor. The frequency and radio parameters are shown on a display and the audio is played on headphones connected directly to the tuner module. RGB LED indicates whether a station is received (green) or not (red). A long touch saves the current station as a preset. The headphone cable also serves as the FM antenna.
